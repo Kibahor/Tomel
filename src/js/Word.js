@@ -1,31 +1,48 @@
 class Word{
     word;
-    tabPositions = []; //0 if not good letter, 1 otherwise
+    goodPositions = [];
     goodLetters = []; //list of the good letter in wrong position
+    wrongLetters = [];
+
     constructor(word) {
         this.word = word;
     }
 
-    GoodPositions(word){
-        for (var i=0;i<word.length;i++) {
-            if (word[i]===this.word[i]) {
-                this.tabPositions.push(1);
-            }
-            else{
-                GoodLetters(word[i]);
-                this.tabPositions.push(0);
-            }
+    goodLetter(letter, position){
+        let findedPosition = this.word.search(letter);
+        if(findedPosition === -1) //lettre non trouvée
+            return false;
+
+        if(findedPosition === position){ //lettre trouvée à la bonne place
+            this.goodPositions.push({position: position, letter: word[position]});
+            return true;
+        }
+
+        //TODO on check si la lettre est dans le mot
+        //TODO ATTENTION si on passe plusieurs fois une lettre OU si une lettre est présente plusieurs fois
+
+        return true;
+    }
+
+    checkLetters(word){
+        for (var i=0; i<word.length; i++) {
+            
+            if(this.goodPosition(word, i))
+                continue;
+
+            if(this.goodLetter(word[i]))
+                continue;
+
+            this.wrongLetters.push(word[i]);
         }
     }
 
-    GoodLetters(letter){
-        if(this.word.includes(letter)){
-            this.goodLetters.push(letter);
-        }
-    }
+    compare(word){
+        if(this.word === word)
+            return true;
 
-    Compare(word){
-        GoodPositions(word);
-        console.log(this.goodLetters,this.tabPositions);
+        checkLetters(word);
+
+        return false;
     }
 }
