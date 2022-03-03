@@ -1,18 +1,25 @@
 class Game{
-    TryToSuccess;
-    DateGame = new Date();
-    WordToFind = new Word("toto");
-    Succed;
+    dateGame = new Date();
+    wordToFind;
+    tryToSuccess = 0;
+    succeed;
+
+    constructor(wordToFind){
+        this.wordToFind = wordToFind;
+    }
     
-    FirstLetter(){
-        return this.WordToFind[0];
+    firstLetter(){
+        return this.wordToFind[0];
     }
 
-    isWordFound(word){
-        WordToFind.Compare(word);
-        if(!WordToFind.tabPositions.includes(0)){
-            return true;
-        }
-        return false;
+    isWordFound(proposalWord){
+        if(this.tryToSuccess < MaxTry)
+            return this.succeed;
+
+        proposalWord.Compare(wordToFind);
+        this.tryToSuccess++;
+        this.succeed = proposalWord.tabPositions.includes(1);
+
+        return this.succeed;
     }
 }
