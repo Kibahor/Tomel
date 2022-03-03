@@ -15,5 +15,4 @@ class Game{
         }
         return false;
     }
-
 }

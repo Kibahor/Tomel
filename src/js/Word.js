@@ -2,13 +2,14 @@ class Word{
     word;
     tabPositions = []; //0 if not good letter, 1 otherwise
     goodLetters = []; //list of the good letter in wrong position
+    
     constructor(word) {
         this.word = word;
     }
 
     GoodPositions(word){
         for (var i=0;i<word.length;i++) {
-            if (word[i]===this.word[i]) {
+            if (word[i] === this.word[i]) {
                 this.tabPositions.push(1);
             }
             else{
