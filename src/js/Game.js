@@ -16,7 +16,7 @@ class Game{
         if(this.tryToSuccess < MaxTry)
             return this.succeed;
 
-        proposalWord.Compare(wordToFind);
+        proposalWord.compare(wordToFind);
         this.tryToSuccess++;
         this.succeed = proposalWord.tabPositions.includes(1);
 
