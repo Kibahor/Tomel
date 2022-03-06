@@ -17,6 +17,13 @@ class Word{
             this.goodPositions.push({position: position, letter: word[position]});
             return true;
         }
+        let cpt=0;
+        this.word.each(wordLetter => {
+            if(wordLetter===letter){
+                cpt++;
+            }
+        });
+        if 
 
         //TODO on check si la lettre est dans le mot
         //TODO ATTENTION si on passe plusieurs fois une lettre OU si une lettre est présente plusieurs fois
