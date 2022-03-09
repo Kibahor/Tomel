@@ -1,32 +1,33 @@
 class Word{
-    word;
-    goodPositions = [];
-    goodLetters = []; //list of the good letter in wrong position
-    wrongLetters = [];
+    #word;
+    #goodPositions = [];
+    #goodLetters = []; //list of the good letter in wrong position
+    #wrongLetters = [];
 
     constructor(word) {
-        this.word = word;
+        this.#word = word;
     }
 
     goodLetter(letter, position){
-        let findedPosition = this.word.search(letter);
+        let findedPosition = this.#word.search(letter);
         if(findedPosition === -1) //lettre non trouvée
             return false;
 
         if(findedPosition === position){ //lettre trouvée à la bonne place
-            this.goodPositions.push({position: position, letter: word[position]});
+            this.#goodPositions.push({position: position, letter: this.#word[position]});
             return true;
         }
-        let cpt=0;
-        for (let i=0;i<word.length;i++){
-            if(word[i]===letter){
-                if(this.goodPositions.position.find(i)){
+
+        let cpt = 0;
+        for (let i = 0; i < this.#word.length; i++){
+            if(this.#word[i] === letter){
+                if(this.#goodPositions.position.find(i)){
                     //lettre deja trouvée
                 }
                 else{
                     //lettre non trouvée
                     cpt++;
-                    this.goodLetters.push({letter: word[i]});
+                    this.#goodLetters.push({letter: this.#word[i]});
                 }
             }
         };
@@ -40,7 +41,7 @@ class Word{
     }
 
     checkLetters(word){
-        for (var i=0; i<word.length; i++) {
+        for (var i=0; i < word.length; i++) {
             
             if(this.goodPosition(word, i))
                 continue;
@@ -48,7 +49,7 @@ class Word{
             if(this.goodLetter(word[i]))
                 continue;
 
-            this.wrongLetters.push(word[i]);
+            this.#wrongLetters.push(word[i]);
         }
     }
 
