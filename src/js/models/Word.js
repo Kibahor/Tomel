@@ -30,7 +30,6 @@ class Word{
                 }
             }
         };
-        if (1){}
 
         //TEST
         //ATET
