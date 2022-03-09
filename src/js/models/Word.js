@@ -18,13 +18,22 @@ class Word{
             return true;
         }
         let cpt=0;
-        this.word.each(wordLetter => {
-            if(wordLetter===letter){
-                cpt++;
+        for (let i=0;i<word.length;i++){
+            if(word[i]===letter){
+                if(this.goodPositions.position.find(i)){
+                    //lettre deja trouvée
+                }
+                else{
+                    //lettre non trouvée
+                    cpt++;
+                    this.goodLetters.push({letter: word[i]});
+                }
             }
-        });
-        if 
+        };
+        if (1){}
 
+        //TEST
+        //ATET
         //TODO on check si la lettre est dans le mot
         //TODO ATTENTION si on passe plusieurs fois une lettre OU si une lettre est présente plusieurs fois
 
