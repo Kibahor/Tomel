@@ -5,22 +5,22 @@ class StorageService{
     constructor(){
         let storage = window.localStorage;
 
-        if(storage.getItem('games') !== undefined)
+        if(storage.getItem('games') !== null)
             this.#games = JSON.parse(storage.getItem('games'));
     }
 
     saveGame(game){
         if(!game instanceof Game)
             throw new TypeError('Le paramètre game doit être de type Game');
-
+            
         this.#currentGame = game;
         let date = this.#currentGame.getDateGame().toLocaleDateString();
-        if(this.#games.indexOf(date) === -1){
-            this.games[date] = this.currentGame;
+        if(this.#games[date] === undefined){
+            this.#games[date] = this.#currentGame;
         }
         
         let storage = window.localStorage;
-        storage.setItem('games', JSON.stringify(Object.assign({}, this.games)));
+        storage.setItem('games', JSON.stringify(this.#games));
 
         return this;
     }

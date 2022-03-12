@@ -1,8 +1,8 @@
 class Game{
     #dateGame = new Date();
-    #wordToFind;
+    #wordToFind = null;
     #tryToSuccess = 0;
-    #succeed;
+    #succeed = false;
 
     #storageService;
 
@@ -34,5 +34,14 @@ class Game{
 
     getDateGame(){
         return this.#dateGame;
+    }
+
+    toJSON(){
+        return {
+            dateGame: this.#dateGame,
+            wordToFind: this.#wordToFind,
+            tryToSuccess: this.#tryToSuccess,
+            succeed: this.#succeed,
+        }
     }
 }
