@@ -1,6 +1,10 @@
 {
-  "dependencies": {
-    "bootstrap": "^5.1.3",
-    "vue": "^3.2.31"
-  }
+    "dependencies": {
+        "bootstrap": "^5.1.3",
+        "vue": "^3.2.31"
+    },
+    "devDependencies": {
+        "gulp-cli": "^2.3.0",
+        "gulp": "^4.0.2"
+    }
 }
