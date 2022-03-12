@@ -10,6 +10,7 @@ function copyCss() {
 
 function copyJs() {
     return src('node_modules/vue/dist/vue.global.prod.js')
+        .pipe(src('src/js/**/*.js'))
         .pipe(dest(jsDistFolder));
 }
 
