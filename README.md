@@ -1,3 +1,7 @@
+## Pré-requis
+
+> [Installer nodeJs](https://nodejs.org/)
+
 ## Installation
 
 > Lancer la commande `npm install`<br/>
