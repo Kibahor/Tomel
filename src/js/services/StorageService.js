@@ -14,7 +14,7 @@ class StorageService{
             throw new TypeError('Le paramètre game doit être de type Game');
 
         this.#currentGame = game;
-        let date = this.#currentGame.dateGame.toLocaleDateString();
+        let date = this.#currentGame.getDateGame().toLocaleDateString();
         if(this.#games.indexOf(date) === -1){
             this.games[date] = this.currentGame;
         }
