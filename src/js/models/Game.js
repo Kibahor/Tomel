@@ -7,7 +7,7 @@ class Game{
     #storageService;
 
     constructor(wordToFind, storageService){
-        if(!date instanceof StorageService)
+        if(!storageService instanceof StorageService)
             throw new TypeError('Le paramètre storageService doit être de type StorageService');
 
         this.#storageService = storageService;
@@ -30,5 +30,9 @@ class Game{
         this.#storageService.saveGame(this);
 
         return this.#succeed;
+    }
+
+    getDateGame(){
+        return this.#dateGame;
     }
 }
