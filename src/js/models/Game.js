@@ -44,4 +44,14 @@ class Game{
             succeed: this.#succeed,
         }
     }
+
+    static fromJSON(gameJson, storageService){
+        let game = new Game('', storageService);
+        game.#dateGame = gameJson['dateGame'];
+        game.#wordToFind = gameJson['wordToFind'];
+        game.#tryToSuccess = gameJson['tryToSuccess'];
+        game.#succeed = gameJson['succeed'];
+
+        return game;
+    }
 }
