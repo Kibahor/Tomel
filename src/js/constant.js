@@ -1,2 +1,4 @@
-Title = 'Tomel';
-MaxTry = 6;
+class Constant {
+    static TITLE = 'Tomel';
+    static MAXTRY = 6;
+}
