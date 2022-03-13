@@ -2,6 +2,7 @@ const { series, src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
+require('dotenv').config();
 
 const cssDistFolder = 'dist/css/';
 const jsDistFolder = 'dist/js/';
@@ -18,10 +19,14 @@ function copyJs() {
 }
 
 function concatJs() {
-    return src(jsOrderedSrcFolder)
-        .pipe(uglify())
-        .pipe(concat('main.js'))
-        .pipe(rename({ extname: '.min.js' }))
+    let glob = src(jsOrderedSrcFolder)
+        .pipe(concat('main.js'));
+
+    if (process.env.ENVIRONNEMENT === 'PROD') {
+        glob = glob.pipe(uglify());
+    }
+
+    return glob.pipe(rename({ extname: '.min.js' }))
         .pipe(dest(jsDistFolder));
 }
 
