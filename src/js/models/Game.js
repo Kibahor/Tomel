@@ -16,20 +16,19 @@ class Game{
     }
     
     firstLetter(){
-        return this.#wordToFind[0];
+        return this.wordToFind.firstLetter();
     }
 
     isWordFound(proposalWord){
+        if(this.tryToSuccess < MaxTry)
+            return this.succeed;
 
-        if(this.#tryToSuccess < MaxTry)
-            return this.#succeed;
+        let equals = this.wordToFind.compare(proposalWord);
+        this.tryToSuccess++;
+        this.succeed = equals;
+        this.storageService.saveGame(this);
 
-        proposalWord.compare(wordToFind);
-        this.#tryToSuccess++;
-        this.#succeed = proposalWord.tabPositions.includes(1);
-        this.#storageService.saveGame(this);
-
-        return this.#succeed;
+        return this.succeed;
     }
 
     getDateGame(){
