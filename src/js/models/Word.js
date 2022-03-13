@@ -9,7 +9,7 @@ class Word{
     }
 
     compare(word){
-        if(this.word === word)
+        if(this.#word === word)
             return true;
 
         this.#checkLetters(word);
@@ -18,7 +18,7 @@ class Word{
     }
 
     firstLetter(){
-        return this.word[0];
+        return this.#word[0];
     }
     
     toJSON(){
@@ -31,8 +31,8 @@ class Word{
     }
 
     #isGoodPosition(letter, position){
-        let findedPosition = this.#word.search(letter);
-        if(findedPosition === -1) //lettre non trouvéivae
+        let findedPosition = this.#word.indexOf(letter, position);
+        if(findedPosition === -1) //lettre non trouvée
             return false;
 
         if(findedPosition === position){ //lettre trouvée à la bonne place
