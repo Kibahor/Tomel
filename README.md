@@ -1,6 +1,7 @@
 ## Pré-requis
 
-> [Installer nodeJs](https://nodejs.org/)
+> [Installer nodeJs](https://nodejs.org/)<br/>
+> Installer gulp via la commande `npm install --global gulp-cli`
 
 ## Installation
 
