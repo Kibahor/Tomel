@@ -23,7 +23,7 @@ class Game{
     }
 
     isWordFound(proposalWord){
-        if(this.#tryToSuccess >= MaxTry)
+        if(this.#succeed || this.#tryToSuccess >= MaxTry)
             return this.#succeed;
 
         this.#succeed = this.#wordToFind.compare(proposalWord);
