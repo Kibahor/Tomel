@@ -8,3 +8,7 @@
 > Lancer la commande `npm install`<br/>
 > Lancer la commande `gulp default` (si erreur PSR alors il faut lancer la commande depuis la Node.js command prompt)<br/>
 > Lancer la commande `npx serve`
+
+## En dev
+
+> A chaque modification d'un fichier JS il faut regénérer les dist via la commande `gulp default` (si erreur PSR alors il faut lancer la commande depuis la Node.js command prompt)
