@@ -22,7 +22,7 @@ function concatJs() {
     let glob = src(jsOrderedSrcFolder)
         .pipe(concat('main.js'));
 
-    if (process.env.ENVIRONNEMENT === 'PROD') {
+    if (process.env.ENVIRONMENT === 'PROD') {
         glob = glob.pipe(uglify());
     }
 
