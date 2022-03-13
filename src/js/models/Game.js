@@ -9,26 +9,28 @@ class Game{
     constructor(wordToFind, storageService){
         if(!storageService instanceof StorageService)
             throw new TypeError('Le paramètre storageService doit être de type StorageService');
+            
+        if(!wordToFind instanceof String)
+            throw new TypeError('Le paramètre wordToFind doit être de type String');
 
         this.#storageService = storageService;
-        this.#wordToFind = wordToFind;
+        this.#wordToFind = new Word(wordToFind);
         this.#storageService.saveGame(this);
     }
     
     firstLetter(){
-        return this.wordToFind.firstLetter();
+        return this.#wordToFind.firstLetter();
     }
 
     isWordFound(proposalWord){
-        if(this.tryToSuccess < MaxTry)
-            return this.succeed;
+        if(this.#tryToSuccess >= MaxTry)
+            return this.#succeed;
 
-        let equals = this.wordToFind.compare(proposalWord);
-        this.tryToSuccess++;
-        this.succeed = equals;
-        this.storageService.saveGame(this);
+        this.#succeed = this.#wordToFind.compare(proposalWord);
+        this.#tryToSuccess++;
+        this.#storageService.saveGame(this);
 
-        return this.succeed;
+        return this.#succeed;
     }
 
     getDateGame(){
@@ -45,9 +47,8 @@ class Game{
     }
 
     static fromJSON(gameJson, storageService){
-        let game = new Game('', storageService);
+        let game = new Game(gameJson['wordToFind'], storageService);
         game.#dateGame = gameJson['dateGame'];
-        game.#wordToFind = gameJson['wordToFind'];
         game.#tryToSuccess = gameJson['tryToSuccess'];
         game.#succeed = gameJson['succeed'];
 

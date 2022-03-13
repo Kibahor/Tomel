@@ -20,6 +20,15 @@ class Word{
     firstLetter(){
         return this.word[0];
     }
+    
+    toJSON(){
+        return {
+            word: this.#word,
+            goodPositions: this.#goodPositions,
+            goodLetters: this.#goodLetters,
+            wrongLetters: this.#wrongLetters,
+        }
+    }
 
     #isGoodPosition(letter, position){
         let findedPosition = this.#word.search(letter);
@@ -68,5 +77,9 @@ class Word{
 
             this.#wrongLetters.push(word[i]);
         }
+    }
+
+    static fromJSON(wordJson){
+        return new Word(wordJson['word']);
     }
 }
