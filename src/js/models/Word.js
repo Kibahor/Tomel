@@ -32,38 +32,24 @@ class Word{
 
     #isGoodPosition(letter, position){
         let findedPosition = this.#word.indexOf(letter, position);
-        if(findedPosition === -1) //lettre non trouvée
-            return false;
-
         if(findedPosition === position){ //lettre trouvée à la bonne place
             this.#goodPositions.push({position: position, letter: this.#word[position]});
             return true;
         }
 
-        let cpt = 0;
-        for (let i = 0; i < this.#word.length; i++){
-            if(this.#word[i] === letter){
-                if(this.#goodPositions.find(element => element.position == i)){
-                    //lettre deja trouvée
-                }
-                else{
-                    //lettre non trouvée
-                    cpt++;
-                    this.#goodLetters.push(this.#word[i]);
-                }
-            }
-        };
-
-        //TEST
-        //ATET
-        //TODO on check si la lettre est dans le mot
-        //TODO ATTENTION si on passe plusieurs fois une lettre OU si une lettre est présente plusieurs fois
-
-        return true;
+        return false;
     }
 
-    #isGoodLetter(letter){
-        return true; //TODO implémenter
+    #isGoodLetter(letter, position){
+        let findedPosition = this.#word.indexOf(letter, position);
+        if(findedPosition !== -1){ //lettre trouvée à la mauvaise place dans la suite du mot
+            this.#goodLetters.push(letter);
+        }
+        else if(this.#word.indexOf(letter, 0) !== -1) { //lettre trouvée à la mauvaise place dans les positions précédentes
+            this.#goodLetters.push(letter);
+        }
+
+        return false;
     }
 
     #checkLetters(word){
