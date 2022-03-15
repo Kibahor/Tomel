@@ -47,8 +47,18 @@ class Game{
     }
 
     static fromJSON(gameJson, storageService){
-        let game = new Game(gameJson['wordToFind'], storageService);
-        game.#dateGame = gameJson['dateGame'];
+        let wordToFind = gameJson['wordToFind'];
+        if(typeof wordToFind === 'object'){
+            if(wordToFind['word']['word'] != undefined){
+                wordToFind = wordToFind['word']['word'];
+            }
+            else{
+                wordToFind = wordToFind['word'];
+            }
+        }
+
+        let game = new Game(wordToFind, storageService);
+        game.#dateGame = new Date(gameJson['dateGame']);
         game.#tryToSuccess = gameJson['tryToSuccess'];
         game.#succeed = gameJson['succeed'];
 
