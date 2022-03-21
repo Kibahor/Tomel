@@ -1,4 +1,7 @@
 Vue.createApp({
+    created () {
+        document.title = Constant.TITLE;
+    },
     data() {
         return {
             title: Constant.TITLE
