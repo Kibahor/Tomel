@@ -22,7 +22,10 @@ class Game{
         return this.#wordToFind.firstLetter();
     }
 
-    isWordFound(proposalWord){
+    isWordFound(proposalWord){            
+        if(!wordToFind instanceof String)
+            throw new TypeError('Le paramètre proposalWord doit être de type String');
+
         if(this.#succeed || this.#tryToSuccess >= Constant.MAXTRY)
             return this.#succeed;
 
