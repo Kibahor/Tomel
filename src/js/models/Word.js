@@ -55,10 +55,10 @@ class Word{
     #checkLetters(word){
         for (var i=0; i < word.length; i++) {
             
-            if(this.#isGoodPosition(word, i))
+            if(this.#isGoodPosition(word[i], i))
                 continue;
 
-            if(this.#isGoodLetter(word[i]))
+            if(this.#isGoodLetter(word[i], i))
                 continue;
 
             this.#wrongLetters.push(word[i]);
