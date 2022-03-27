@@ -2,6 +2,7 @@ const { series, src, dest } = require('gulp');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
+const ts = require('gulp-typescript');
 require('dotenv').config();
 
 const cssDistFolder = 'dist/css/';
@@ -27,6 +28,20 @@ function concatJs() {
     }
 
     return glob.pipe(rename({ extname: '.min.js' }))
+        .pipe(dest(jsDistFolder));
+}
+
+function convertTs() {
+    return src('src/ts/**/*.ts')
+        .pipe(ts({
+            noImplicitAny: false,
+            outFile: 'main.js',
+            lib: ['es2017', 'dom'],
+            target: 'es6',
+            module: 'amd'
+        }))
+        .pipe(uglify())
+        .pipe(rename({ extname: '.min.js' }))
         .pipe(dest(jsDistFolder));
 }
 
