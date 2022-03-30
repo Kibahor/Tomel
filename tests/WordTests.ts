@@ -10,15 +10,19 @@ function testRightWord():void {
     let wordClass:Word = new Word(word);
     if(!wordClass.compare(word))
         throw new Error("compare(word) must return true with the same word and it return false");
+    console.log("testRightWord : success !");
 }
+testRightWord();
 
 function testWrongWord():void {
     let wordClass:Word = new Word(word);
     if(wordClass.compare("depeignassent"))
         throw new Error("compare(word) must return false with the wrong word and it return true");
+    console.log("testWrongWord : success !");
 }
+testWrongWord();
 
-function testWordWithSomeMatchLetters():void {
+function testGoodPositions():void {
     let wordClass:Word = new Word(word);
     let testWord:string = "dzzhyzzzzzzze"; //Here I test with a fake word if some letter at beginning (dhy) and ending (e) of the word match correctly
     let letterAtGoodPlace = [
@@ -28,11 +32,13 @@ function testWordWithSomeMatchLetters():void {
         {position: 12, letter: "e"}
     ];
     wordClass.compare(testWord); //The return value isn't important
-    let result = wordClass.toJSON().get("goodPositions"); //Because of privacy of variables, I've to use toJSON to see the content of arrays
-    if(letterAtGoodPlace !== result){
+    let result = wordClass.toJSON()["goodPositions"]; //Because of privacy of variables, I've to use toJSON to see the content of arrays
+    if(JSON.stringify(letterAtGoodPlace) !== JSON.stringify(result)){ //For compare two array i need to stringify each array
         console.log("Expected : ",letterAtGoodPlace);
         console.log("got : ",result);
         throw new Error("Problem with isGoodLetter(), the expected result mismatch with actual result");
     }
+    console.log("testGoodPositions : success !");
 }
+testGoodPositions();
 
