@@ -1,0 +1,18 @@
+.essai input{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#grid{
+    margin-top: 20px;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+p{
+    display: inline;
+    position: absolute;
+    margin-top:10px;
+}

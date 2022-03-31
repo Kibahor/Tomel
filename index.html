@@ -5,24 +5,27 @@
     <meta charset="utf-8" />
 
     <link href="/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/view/css/style.css" rel="stylesheet" />
     <script src="/dist/js/vue.global.prod.js"></script>
 </head>
 
 <body>
-    <h1 class="text-center">{{ title }}</h1>
+    <div id="app">
+        <h1 class="text-center">{{ title }}</h1>
 
-    <div class="text-center">
-        Le jeu est en cours de développement !
+        <div class="text-center">
+            Le jeu est en cours de développement !
+        </div>
+
+        <section id="grid">
+            <try v-for="n in maxTry" v-bind:word=word v-bind:essai=n></try>
+            <!-- TODO générer une ligne composer de X input (X étant la taille du mot à trouver) -->
+            <!-- TODO pour passer à la ligne suivante on doit valider la ligne courant (bouton "OK" à la fin de la ligne ou VIA la touche entrée) -->
+        </section>
+
+        <script src="/src/js/constant.js"></script>
+        <script type="module" src="/src/js/main.js"></script>
     </div>
-
-    <section id="grid">
-        <!-- TODO générer une ligne composer de X input (X étant la taille du mot à trouver) -->
-        <!-- TODO pour passer à la ligne suivante on doit valider la ligne courant (bouton "OK" à la fin de la ligne ou VIA la touche entrée) -->
-    </section>
-
-    <section id="result"></section>
-
-    <script src="/dist/js/main.min.js"></script>
 </body>
 
 </html>

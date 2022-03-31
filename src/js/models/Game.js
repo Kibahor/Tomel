@@ -17,6 +17,10 @@ class Game{
         this.#wordToFind = new Word(wordToFind);
         this.#storageService.saveGame(this);
     }
+
+    getWordToFind(){
+        return this.#wordToFind;
+    }
     
     firstLetter(){
         return this.#wordToFind.firstLetter();

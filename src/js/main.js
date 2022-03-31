@@ -1,3 +1,8 @@
+import Try from '../../view/components/Try.js';
+import Case from '../../view/components/Case.js';
+
+
+
 Vue.createApp({
     created () {
         document.title = Constant.TITLE;
@@ -10,7 +15,12 @@ Vue.createApp({
     },
     data() {
         return {
-            title: Constant.TITLE
+            title: Constant.TITLE,
+            maxTry: Constant.MAXTRY,
+            word: 'compromis',
         }
     }
-}).mount('h1');
+}).component('Try',Try).component('Case',Case).mount('body');
+
+let input = document.querySelector('input');
+input.focus()
