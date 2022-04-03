@@ -53,7 +53,7 @@ class Word{
     }
 
     #checkLetters(word){
-        for (var i=0; i < word.length; i++) {
+        for (let i=0; i < word.length; i++) {
             
             if(this.#isGoodPosition(word[i], i))
                 continue;

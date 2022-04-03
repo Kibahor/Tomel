@@ -8,13 +8,17 @@ const cssDistFolder = 'dist/css/';
 const jsDistFolder = 'dist/js/';
 const jsOrderedSrcFolder = ['src/js/models/*.js', 'src/js/services/*.js', 'src/js/*.js'];
 
+const cssImported = ['node_modules/bootstrap/dist/css/bootstrap.min.css', 'node_modules/bootstrap/dist/css/bootstrap.min.css.map'];
+const jsImported = ['node_modules/vue/dist/vue.global.prod.js'];
+
+
 function copyCss() {
-    return src(['node_modules/bootstrap/dist/css/bootstrap.min.css', 'node_modules/bootstrap/dist/css/bootstrap.min.css.map'])
+    return src(cssImported)
         .pipe(dest(cssDistFolder));
 }
 
 function copyJs() {
-    return src('node_modules/vue/dist/vue.global.prod.js')
+    return src(jsImported)
         .pipe(dest(jsDistFolder));
 }
 

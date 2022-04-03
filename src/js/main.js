@@ -1,11 +1,13 @@
 Vue.createApp({
-    created () {
+    created() {
         document.title = Constant.TITLE;
 
+        let now = new Date();
         let storageService = new StorageService();
-        let game = storageService.loadGame(new Date());
+        let game = storageService.loadGame(now);
         if (game === null) {
-            game = new Game('test', storageService); //TODO récupérer le mot à deviner depuis WordDictionnary.getRandomWord
+            let wordDictionnary = new WordDictionnary();
+            game = new Game(wordDictionnary.getRandomWord(now), storageService);
         }
     },
     data() {
