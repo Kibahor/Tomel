@@ -1,6 +1,6 @@
-import  {StorageService } from '../services/StorageService'
+import  {StorageService } from 'src/ts/services/StorageService'
 import { Word } from './Word'
-import { Constants } from '../Constants'
+import { Constants } from 'src/ts/Constants'
 
 export class Game{
     private dateGame : Date = new Date();

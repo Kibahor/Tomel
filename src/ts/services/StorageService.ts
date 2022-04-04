@@ -1,4 +1,4 @@
-import {Game} from '../models/Game'
+import {Game} from 'src/ts/models/Game'
 
 export class StorageService {
     private currentGame: Game;

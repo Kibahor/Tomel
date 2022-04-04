@@ -1,4 +1,4 @@
-import { LetterPosition } from "../dtos/LetterPosition";
+import { LetterPosition } from "src/ts/dtos/LetterPosition";
 
 export class Word{
     private word: string;
