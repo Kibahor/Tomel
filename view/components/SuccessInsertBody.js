@@ -11,7 +11,7 @@ export default {
                 <h2>
                     Statistiques
                 </h2>
-                <div class="row">
+                <div class="row"  style="justify-content:center;">
                     <stat-item
                         section-name="Parties"
                         value="1"
