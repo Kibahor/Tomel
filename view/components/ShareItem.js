@@ -12,7 +12,7 @@ export default {
         },
     },
     template: `
-        <button @click="" class="btn" :class="{ bgColor }" type="button" style="background-color: #f5057d">
+        <button @click="" class="btn" type="button" v-bind:style="{'background-color': bgColor}">
             <i class="fa " v-bind:class="faIcon"></i>
             {{ name }}
         </button>

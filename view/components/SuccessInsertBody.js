@@ -84,24 +84,25 @@ export default {
                     <share-item class="col"
                         name="instagram"
                         fa-icon="fa-instagram"
-                        bgColor="rose"
+                        bgColor="#f5057d"
                         >
                     </share-item>
                     <share-item class="col"
                         name="facebook"
                         fa-icon="fa-facebook"
-                        bgColor="blue"
+                        bgColor="#1DB9D5"
                         >
                     </share-item>
                     <share-item class="col"
                         name="clip-board"
                         fa-icon="fa-clipboard"
+                        bgColor="grey"
                         >
                     </share-item>
                 </div>
             </div>
             <div id="toCopy">
-                J'ai réussi à trouver le mot du jour en X coups sur URL
+                <!-- J'ai réussi à trouver le mot du jour en X coups sur URL -->
             </div>
         </div>
     `
