@@ -1,19 +1,20 @@
-import {Game} from 'src/ts/models/Game'
+import Game from "../models/Game";
 
-export class StorageService {
-    private currentGame: Game;
-    private games: Map<string, Game> = new Map<string, Game>();
+export default class StorageService {
+    private currentGame? : Game;
+    private games = {} as {[key:string] : Game};//: Map<string, Game> = new Map<string, Game>();
 
     constructor() {
         let storage = window.localStorage;
 
-        if (storage.getItem('games') !== null) {
-            let gamesJson = JSON.parse(storage.getItem('games'));
+        if (storage.getItem('games') === null)
+            return;
 
-            Object.entries(gamesJson).forEach(([key, value]) => {
-                this.games[key] = Game.fromJSON(value, this);
-            });
-        }
+        let gamesString = storage.getItem('games');
+        if(gamesString === null)
+            return;
+
+        let gamesJson = JSON.parse(gamesString);
     }
 
     saveGame(game: Game): StorageService {  
@@ -29,7 +30,7 @@ export class StorageService {
         return this;
     }
 
-    loadGame(date: Date): Game {
+    loadGame(date: Date): Game|null {
         let game = this.games[date.toLocaleDateString()];
         if (game !== undefined)
             return game;

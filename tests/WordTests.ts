@@ -2,7 +2,8 @@
 //TODO on test la méthode compare de la classe Word
 //TODO cas à tester : mot exact, mot différent avec lettre bien placée, mot différent avec lettre trouvée mais mal placée
 //Mot à 13 lettre : https://www.listesdemots.net/mots13lettrespage27.htm
-import { Word } from "src/ts/models/Word";
+
+import Word from "../src/ts/models/Word";
 
 function testRightWord():void {
     const WORD:string = "dithyrambique";

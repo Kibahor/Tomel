@@ -1,28 +1,39 @@
-import  {StorageService } from 'src/ts/services/StorageService'
-import { Word } from './Word'
-import { Constants } from 'src/ts/Constants'
+import Constants from "../Constants";
+import StorageService from "../services/StorageService";
+import Word from "./Word";
 
-export class Game{
+
+export default class Game{
     private dateGame : Date = new Date();
-    private wordToFind : Word = null;
+    private wordToFind : Word;
     private tryToSuccess : number = 0;
     private succeed : boolean = false;
 
-    storageService : StorageService;
+    public storageService : StorageService;
 
     constructor(wordToFind: string, storageService: StorageService){
         this.storageService = storageService;
         this.wordToFind = new Word(wordToFind);
         this.storageService.saveGame(this);
     }
+
+    getWordToFind(): Word{
+        return this.wordToFind;
+    }
     
     firstLetter(): string{
+        if(this.wordToFind === null)
+            throw new Error('Aucun mot à trouver');
+
         return this.wordToFind.firstLetter();
     }
 
     isWordFound(proposalWord: string): boolean{
-        if(this.tryToSuccess < Constants.MAXTRY)
+        if(this.tryToSuccess > Constants.MAXTRY)
             return this.succeed;
+
+        if(this.wordToFind === null)
+            throw new Error('Aucun mot à trouver');
 
         this.succeed = this.wordToFind.compare(proposalWord);
         this.tryToSuccess++;

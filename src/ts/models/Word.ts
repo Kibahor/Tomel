@@ -1,6 +1,6 @@
-import { LetterPosition } from "src/ts/dtos/LetterPosition";
+import LetterPosition from "../dtos/LetterPosition";
 
-export class Word{
+export default class Word{
     private word: string;
     private goodPositions: LetterPosition[] = [];
     private goodLetters: string[] = []; //list of the good letter in wrong position
@@ -21,6 +21,10 @@ export class Word{
 
     firstLetter(): string{
         return this.word[0];
+    }
+    
+    getWord(): string{
+        return this.word;
     }
     
     toJSON(): any{
@@ -67,7 +71,7 @@ export class Word{
         }
     }
 
-    static fromJSON(wordJson): Word{
+    static fromJSON(wordJson: any): Word{
         return new Word(wordJson['word']);
     }
 }
