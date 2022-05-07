@@ -1,4 +1,4 @@
-export class LetterPosition{
+export default class LetterPosition{
     position: number;
     letter: string;
 
