@@ -5,14 +5,9 @@
         "vue": "^3.2.33"
     },
     "devDependencies": {
-        "gulp": "^4.0.2",
-        "gulp-clean-css": "^4.3.0",
-        "gulp-cli": "^2.3.0",
-        "gulp-concat": "^2.6.1",
-        "gulp-rename": "^2.0.0",
-        "gulp-uglify": "^3.0.2",
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
+        "copy-webpack-plugin": "^10.2.4",
         "ts-loader": "^9.3.0",
         "typescript": "^4.6.4"
     }
