@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
 
     <link href="/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/dist/css/style.min.css" rel="stylesheet" />
+    <link href="/dist/css/style.css" rel="stylesheet" />
+
     <script src="/dist/js/vue.global.prod.js"></script>
 </head>
 
@@ -21,14 +22,10 @@
         </div>
 
         <section id="grid">
-            <try v-for="n in maxTry" 
-                 v-bind:word=word 
-                 v-bind:essai=n
-                 @add-message="addMessage"
-                 @clear-message="clearMessage"></try>
+            <try v-for="n in maxTry" v-bind:word=word v-bind:essai=n @add-message="addMessage" @clear-message="clearMessage"></try>
         </section>
 
-        <script type="module" src="/dist/js/App.min.js"></script>
+        <script type="module" src="/dist/App.min.js"></script>
     </div>
 </body>
 
