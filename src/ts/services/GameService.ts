@@ -4,12 +4,12 @@ import StorageService from './StorageService';
 
 export default class GameService {
     static getCurrentGame(): Game{
-        let date = new Date();
-        let storageService = new StorageService();
+        const date = new Date();
+        const storageService = new StorageService();
         let game = storageService.loadGame(date);
         if (game === null) {
-            let dictionnary = new WordDictionnary();
-            game = new Game(dictionnary.getRandomWord(date), storageService); //TODO récupérer le mot à deviner depuis WordDictionnary.getRandomWord
+            const dictionnary = new WordDictionnary();
+            game = new Game(dictionnary.getRandomWord(date), storageService);
         }
 
         return game;
