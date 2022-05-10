@@ -11,13 +11,9 @@ export default class Game{
 
     public storageService : StorageService;
 
-    constructor(wordToFind: string, storageService: StorageService|null){
+    constructor(wordToFind: string, storageService: StorageService){
         this.wordToFind = new Word(wordToFind);
-
-        if(storageService != null) {
-            this.storageService = storageService;
-            this.storageService.saveGame(this);
-        }
+        this.storageService = storageService;
     }
 
     getWordToFind(): Word{
@@ -59,13 +55,11 @@ export default class Game{
     }
 
     static fromJSON(gameJson: any, storageService: StorageService): Game{
-        let game = new Game('', null);
-        game.dateGame = gameJson['dateGame'];
-        game.wordToFind = gameJson['wordToFind'];
+        let game = new Game('', storageService); //todo revoir la sauvegarde automatique du mot
+        game.dateGame = new Date(gameJson['dateGame']);
+        game.wordToFind = Word.fromJSON(gameJson['wordToFind']);
         game.tryToSuccess = gameJson['tryToSuccess'];
         game.succeed = gameJson['succeed'];
-
-        storageService.saveGame(game);
 
         return game;
     }

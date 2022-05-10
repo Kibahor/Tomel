@@ -72,6 +72,9 @@ export default class Word{
     }
 
     static fromJSON(wordJson: any): Word{
+        if(!wordJson['word'])
+            throw 'Erreur dans le format JSON du WORD';
+
         return new Word(wordJson['word']);
     }
 }

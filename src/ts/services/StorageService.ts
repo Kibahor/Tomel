@@ -15,15 +15,15 @@ export default class StorageService {
         const $this = this
         gamesJson.forEach(function(gameJson: any) {
             const game = Game.fromJSON(gameJson, $this);
-            this.games.set(game.getDateGame().toLocaleDateString(), game);
+            $this.games.set(game.getDateGame().toLocaleDateString(), game);
         });
     }
 
     saveGame(game: Game): StorageService {
         this.currentGame = game;
-        const date = this.currentGame.getDateGame().toLocaleDateString();
-        if (this.games.get(date) === undefined) {
-            this.games.set(date, this.currentGame);
+        const dateStr = this.currentGame.getDateGame().toLocaleDateString();
+        if (this.games.get(dateStr) === undefined) {
+            this.games.set(dateStr, this.currentGame);
         }
 
         window.localStorage.setItem('games', JSON.stringify(this.games, this.replacer));
