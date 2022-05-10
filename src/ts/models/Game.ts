@@ -11,10 +11,13 @@ export default class Game{
 
     public storageService : StorageService;
 
-    constructor(wordToFind: string, storageService: StorageService){
-        this.storageService = storageService;
+    constructor(wordToFind: string, storageService: StorageService|null){
         this.wordToFind = new Word(wordToFind);
-        this.storageService.saveGame(this);
+
+        if(storageService != null) {
+            this.storageService = storageService;
+            this.storageService.saveGame(this);
+        }
     }
 
     getWordToFind(): Word{
@@ -56,11 +59,13 @@ export default class Game{
     }
 
     static fromJSON(gameJson: any, storageService: StorageService): Game{
-        let game = new Game('', storageService);
+        let game = new Game('', null);
         game.dateGame = gameJson['dateGame'];
         game.wordToFind = gameJson['wordToFind'];
         game.tryToSuccess = gameJson['tryToSuccess'];
         game.succeed = gameJson['succeed'];
+
+        storageService.saveGame(game);
 
         return game;
     }
