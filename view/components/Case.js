@@ -53,7 +53,6 @@ export default {
     template: `
         <input maxlength="1" 
                class="sf m-2"
-
                @keyup=bindValue($event)
                :disabled="essai != 1"></input>
         `
