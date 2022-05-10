@@ -12,7 +12,7 @@ export default {
             this.$emit('clearMessage');
 
             if (event.code === Constants.EnterCode) {
-                this.validLine();
+                this.$emit('validLine');
                 return;
             }
 
@@ -21,33 +21,7 @@ export default {
                 return;
             }
 
-            let inputs = this.getInputsFromLine(this.essai - 1);
-            let indice = this.indice;
-
-            if (event.code === Constants.BackspaceCode && this.indice > 1) {
-                indice = indice - 2;
-                inputs[indice].value = '';
-            }
-
-            let nextInput = inputs[indice];
-            nextInput.focus();
-        },
-        validLine() {
-            let inputs = this.getInputsFromLine(this.essai - 1);
-            if (!Array.from(inputs).every(input => input.value !== '')) {
-                throw 'Veuillez renseigner tout les champs';
-            }
-
-            inputs.forEach(function(input) {
-                input.classList.add('goodPos');
-            });
-
-            this.$emit('validLine');
-        },
-        getInputsFromLine(line) {
-            let tries = document.querySelectorAll('.essai');
-
-            return tries[line].querySelectorAll('input');
+            this.$emit('nextCase', event, this.indice);
         }
     },
     template: `
