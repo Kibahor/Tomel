@@ -1,7 +1,9 @@
 export default class Constants{
-    static TITLE: String = 'Tomel';
+    static TITLE: string = 'Tomel';
     static MAXTRY: number = 6;
 
-    static EnterCode: String = 'Enter';
-    static BackspaceCode: String = 'Backspace';
+    static EnterCode: string = 'Enter';
+    static BackspaceCode: string = 'Backspace';
+
+    static PressEnter: string = 'Appuyez sur entré !';
 }
