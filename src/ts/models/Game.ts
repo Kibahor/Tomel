@@ -19,13 +19,6 @@ export default class Game{
     getWordToFind(): Word{
         return this.wordToFind;
     }
-    
-    firstLetter(): string{
-        if(this.wordToFind === null)
-            throw new Error('Aucun mot à trouver');
-
-        return this.wordToFind.firstLetter();
-    }
 
     isWordFound(proposalWord: string): boolean{
         if(this.tryToSuccess > Constants.MAXTRY)

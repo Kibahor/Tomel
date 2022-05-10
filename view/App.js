@@ -21,16 +21,12 @@ Vue.createApp({
         return {
             title: Constant.TITLE,
             maxTry: Constant.MAXTRY,
-            word: this.recupWord(),
-            firstLetter: this.firstLetter()
+            word: this.recupWord()
         }
     },
     methods: {
         recupWord() {
             return GameService.getCurrentGame().getWordToFind().getWord();
-        },
-        firstLetter() {
-            return GameService.getCurrentGame().firstLetter();
         },
 
         clearMessage() {

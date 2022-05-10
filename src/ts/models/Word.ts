@@ -18,10 +18,6 @@ export default class Word{
 
         return false;
     }
-
-    firstLetter(): string{
-        return this.word[0];
-    }
     
     getWord(): string{
         return this.word;
@@ -50,16 +46,18 @@ export default class Word{
         let findedPosition = this.word.indexOf(letter, position);
         if(findedPosition !== -1){ //lettre trouvée à la mauvaise place dans la suite du mot
             this.goodLetters.push(letter);
+            return true;
         }
         else if(this.word.indexOf(letter, 0) !== -1) { //lettre trouvée à la mauvaise place dans les positions précédentes
             this.goodLetters.push(letter);
+            return true;
         }
 
         return false;
     }
 
     private checkLetters(word: string): void{
-        for (var i=0; i < word.length; i++) {
+        for (let i=0; i < word.length; i++) {
             
             if(this.isGoodPosition(word[i], i))
                 continue;
