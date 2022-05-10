@@ -9,7 +9,7 @@ Vue.createApp({
         document.title = Constant.TITLE;
     },
     errorCaptured: function(err) {
-        alert(err);
+        console.error(err);
 
         return false;
     },
@@ -27,8 +27,6 @@ Vue.createApp({
     },
     methods: {
         recupWord() {
-            console.log('getCurrentGame', GameService.getCurrentGame());
-            console.log('getWordToFind', GameService.getCurrentGame().getWordToFind());
             return GameService.getCurrentGame().getWordToFind().getWord();
         },
         firstLetter() {
