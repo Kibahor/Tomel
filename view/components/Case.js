@@ -5,12 +5,7 @@ export default {
     props: {
         totalLetter: Number,
         indice: Number,
-        essai: Number,
-    },
-    data() {
-        return {
-          activeColor: "rgb(255, 255, 255)"
-        }
+        activeColors: Array
     },
     methods: {
         bindValue(event) {
@@ -29,15 +24,12 @@ export default {
 
             this.$emit('nextCase', event, this.indice);
         },
-        setActiveColor(color){
-            this.activeColor=color;
-        }
     },
     template: `
         <input maxlength="1" 
                class="sf m-2"
                @keyup=bindValue($event)
-               :disabled="essai != 1"
-               v-bind:style="{ backgroundColor: activeColor}"></input>
+               v-bind:style="{ backgroundColor: activeColors[indice]}"></input>
         `
+        //:disabled="essai != 1"
 }

@@ -6,6 +6,11 @@ export default {
         word: String,
         essai: Number,
     },
+    data() {
+        return {
+            activeColors: []
+        }
+    },
     methods: {
         addMessage(message) {
             this.$emit('addMessage', message);
@@ -31,45 +36,29 @@ export default {
             const wordUser = this.getUserFullWord();
             const game = GameService.getCurrentGame();
             if(game.isWordFound(wordUser)){
-                console.log("Word has been found !")
+                console.log('Word has been found !');
                 return;
             }
-            //todo pour Lukas
-            //foreach des case
-            //pour chaque case, lui indiquer sa couleur d'affichage : vert => lettre bien placée, jaune => lettre trouvée ailleurs sinon blanc
             let letters = game.getWordToFind().getLetters();
+            console.log(letters);
             for(let i in wordUser){
                 let letter = letters[i];
+                let color= Constant.Blanc;
                 if(letter.good_position){
-                    //this.$children[i].$emit('setActiveColor',"rgb(0, 255, 0)")
-                    console.log("vert");
+                    color=Constant.Vert;
                 }else if(letter.good_letter){
-                    //this.$children[i].$emit('setActiveColor',"rgb(255, 255, 0)")
-                    console.log("jaune");
+                    color=Constant.Jaune;
                 }else{
-                    //this.$children[i].$emit('setActiveColor',"rgb(255, 0, 0)")
-                    console.log("rouge");
+                    color=Constant.Rouge;
                 }
+                this.activeColors.push(color);
             }
 
-            this.disableLine();
-            this.nextLine();
+            this.$emit(nextLine)
         },
-        //todo pour lukas : todo déplacer le changement de ligne dans App.js
-        nextLine() {
-            let inputs = this.getInputsFromLine();
-            inputs.forEach(function(input) {
-                input.removeAttribute('disabled');
-            });
-
-            inputs[0].focus();
+        getInputsFromLine() {
+            return document.querySelectorAll('#try-' + this.essai + ' > input');
         },
-        disableLine() {
-            this.getInputsFromLine().forEach(function(input) {
-                input.setAttribute('disabled', '');
-            });
-        },
-
         assertRequiredLetters() {
             let inputs = this.getInputsFromLine();
             if (!Array.from(inputs).every(input => input.value !== '')) {
@@ -84,9 +73,6 @@ export default {
             });
 
             return word;
-        },
-        getInputsFromLine() {
-            return document.querySelectorAll('#try-' + this.essai + ' > input');
         }
     },
     template: `
@@ -94,7 +80,7 @@ export default {
             <case v-for="number in word.length"
                   v-bind:totalLetter=word.length 
                   v-bind:indice=number 
-                  v-bind:essai=essai
+                  v-bind:activeColors=activeColors
                   @add-message="addMessage"
                   @next-case="nextCase"
                   @clear-message="clearMessage"
