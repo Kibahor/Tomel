@@ -1,5 +1,4 @@
 import Constants from '/src/ts/Constants';
-import LetterState from '/src/ts/dtos/LetterState';
 
 export default {
     props: {

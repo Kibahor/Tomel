@@ -39,4 +39,4 @@ Vue.createApp({
             div.append(p);
         }
     }
-}).component('Try', Try).component('Case', Case).component('Grid',Grid).mount('#app');
+}).component('Try', Try).component('Case', Case).component('Grid', Grid).mount('#app');

@@ -37,13 +37,11 @@ export default {
             this.disableLine();
             this.actualTry++;
             this.nextLine();
-            console.log('changed')
-    
         }
     },
     template: `
     <section id="grid">
-        <try v-for="n in maxTry" v-bind:word=word v-bind:essai=n @add-message="addMessage" @clear-message="clearMessage" @change-line="changeLine"></try>
+        <try v-for="n in maxTry" v-bind:word=word v-bind:essai=n @add-message="addMessage" @clear-message="clearMessage" @change-line="changeLine" @disable-line="disableLine"></try>
     </section>
         `
 }

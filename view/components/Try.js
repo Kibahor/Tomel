@@ -34,13 +34,15 @@ export default {
             this.assertRequiredLetters();
 
             const wordUser = this.getUserFullWord();
-            const game = GameService.getCurrentGame();
+            let game = GameService.getCurrentGame();
+            let letters = game.getWordToFind().getLetters();
+
             if(game.isWordFound(wordUser)){
-                this.addMessage('Word has been found !')
+                this.addMessage('Word has been found !');
+                this.$emit('disableLine');
                 return;
             }
-            let letters = game.getWordToFind().getLetters();
-            console.log(letters);
+
             for(let i in wordUser){
                 let letter = letters[i];
                 let color= Constant.Blanc;
@@ -53,7 +55,7 @@ export default {
                 }
                 this.activeColors.push(color);
             }
-            console.log(this.activeColors);
+
             this.$emit('changeLine');
         },
         getInputsFromLine() {
@@ -72,7 +74,7 @@ export default {
                 word += el.value;
             });
 
-            return word;
+            return word.toLowerCase();
         }
     },
     template: `
