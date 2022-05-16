@@ -7,7 +7,7 @@ const jsDistFolder = 'js/';
 const imgDistFolder = 'img/';
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './view/App.js',
     module: {
         rules: [{

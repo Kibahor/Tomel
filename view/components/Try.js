@@ -28,14 +28,29 @@ export default {
         validLine() {
             this.assertRequiredLetters();
 
-            const word = this.getUserFullWord();
+            const wordUser = this.getUserFullWord();
             const game = GameService.getCurrentGame();
-
-            const succeed = game.isWordFound(word);
-
+            if(game.isWordFound(wordUser)){
+                console.log("Word has been found !")
+                return;
+            }
             //todo pour Lukas
             //foreach des case
             //pour chaque case, lui indiquer sa couleur d'affichage : vert => lettre bien placée, jaune => lettre trouvée ailleurs sinon blanc
+            let letters = game.getWordToFind().getLetters();
+            for(let i in wordUser){
+                let letter = letters[i];
+                if(letter.good_position){
+                    //this.$children[i].$emit('setActiveColor',"rgb(0, 255, 0)")
+                    console.log("vert");
+                }else if(letter.good_letter){
+                    //this.$children[i].$emit('setActiveColor',"rgb(255, 255, 0)")
+                    console.log("jaune");
+                }else{
+                    //this.$children[i].$emit('setActiveColor',"rgb(255, 0, 0)")
+                    console.log("rouge");
+                }
+            }
 
             this.disableLine();
             this.nextLine();

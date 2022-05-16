@@ -21,11 +21,11 @@ Vue.createApp({
         return {
             title: Constant.TITLE,
             maxTry: Constant.MAXTRY,
-            word: this.recupWord()
+            word: this.getWord()
         }
     },
     methods: {
-        recupWord() {
+        getWord() {
             return GameService.getCurrentGame().getWordToFind().getWord();
         },
 

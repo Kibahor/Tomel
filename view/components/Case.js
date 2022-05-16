@@ -1,10 +1,16 @@
 import Constants from '/src/ts/Constants';
+import LetterState from '/src/ts/dtos/LetterState';
 
 export default {
     props: {
         totalLetter: Number,
         indice: Number,
-        essai: Number
+        essai: Number,
+    },
+    data() {
+        return {
+          activeColor: "rgb(255, 255, 255)"
+        }
     },
     methods: {
         bindValue(event) {
@@ -22,12 +28,16 @@ export default {
             }
 
             this.$emit('nextCase', event, this.indice);
+        },
+        setActiveColor(color){
+            this.activeColor=color;
         }
     },
     template: `
         <input maxlength="1" 
                class="sf m-2"
                @keyup=bindValue($event)
-               :disabled="essai != 1"></input>
+               :disabled="essai != 1"
+               v-bind:style="{ backgroundColor: activeColor}"></input>
         `
 }
