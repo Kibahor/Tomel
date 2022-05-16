@@ -4,7 +4,7 @@ import Constant from '/src/ts/Constants';
 export default {
     props: {
         word: String,
-        essai: Number,
+        essai: Number
     },
     data() {
         return {
@@ -36,7 +36,7 @@ export default {
             const wordUser = this.getUserFullWord();
             const game = GameService.getCurrentGame();
             if(game.isWordFound(wordUser)){
-                console.log('Word has been found !');
+                this.addMessage('Word has been found !')
                 return;
             }
             let letters = game.getWordToFind().getLetters();
@@ -53,8 +53,8 @@ export default {
                 }
                 this.activeColors.push(color);
             }
-
-            this.$emit(nextLine)
+            console.log(this.activeColors);
+            this.$emit('changeLine');
         },
         getInputsFromLine() {
             return document.querySelectorAll('#try-' + this.essai + ' > input');
@@ -81,6 +81,7 @@ export default {
                   v-bind:totalLetter=word.length 
                   v-bind:indice=number 
                   v-bind:activeColors=activeColors
+                  v-bind:essai=essai
                   @add-message="addMessage"
                   @next-case="nextCase"
                   @clear-message="clearMessage"

@@ -5,6 +5,7 @@ export default {
     props: {
         totalLetter: Number,
         indice: Number,
+        essai: Number,
         activeColors: Array
     },
     methods: {
@@ -29,7 +30,7 @@ export default {
         <input maxlength="1" 
                class="sf m-2"
                @keyup=bindValue($event)
-               v-bind:style="{ backgroundColor: activeColors[indice]}"></input>
+               :disabled="essai != 1"
+               v-bind:style="{ backgroundColor: activeColors[indice-1]}"></input>
         `
-        //:disabled="essai != 1"
 }

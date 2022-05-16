@@ -1,5 +1,6 @@
 import Try from '/view/components/Try.js';
 import Case from '/view/components/Case.js';
+import Grid from '/view/components/Grid.js';
 
 import Constant from '/src/ts/Constants';
 import GameService from '/src/ts/services/GameService';
@@ -19,8 +20,6 @@ Vue.createApp({
     data() {
         return {
             title: Constant.TITLE,
-            maxTry: Constant.MAXTRY,
-            actualTry: 1,
             word: this.getWord()
         }
     },
@@ -38,23 +37,6 @@ Vue.createApp({
             let p = document.createElement('p');
             p.innerHTML = message;
             div.append(p);
-        },
-        getInputsFromLine() {
-            return document.querySelectorAll('#try-' + this.actualTry + ' > input');
-        },
-        nextLine() {
-            let inputs = this.getInputsFromLine();
-            inputs.forEach(function(input) {
-                input.removeAttribute('disabled');
-            });
-        
-            inputs[0].focus();
-            this.actualTry++;
-        },
-        disableLine() {
-            this.getInputsFromLine().forEach(function(input) {
-                input.setAttribute('disabled', '');
-            });
-        },
+        }
     }
-}).component('Try', Try).component('Case', Case).mount('#app');
+}).component('Try', Try).component('Case', Case).component('Grid',Grid).mount('#app');
