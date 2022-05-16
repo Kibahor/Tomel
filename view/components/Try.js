@@ -74,7 +74,7 @@ export default {
                 word += el.value;
             });
 
-            return word.toLowerCase();
+            return word;
         }
     },
     template: `

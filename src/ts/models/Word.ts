@@ -9,6 +9,7 @@ export default class Word{
     }
 
     compare(word: string): boolean{
+        word= word.toLowerCase();
         if(this.word === word)
             return true;
 
