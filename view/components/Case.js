@@ -22,11 +22,25 @@ export default {
                 return;
             }
 
-            this.$emit('nextCase', event, this.indice);
+            let inputs = this.getInputsFromLine(this.essai - 1);
+            let indice = this.indice;
+
+            if (event.code === Constants.BackspaceCode && this.indice > 1) {
+                indice = indice - 2;
+                inputs[indice].value = '';
+            }
+
+            let nextInput = inputs[indice];
+            nextInput.focus();
         },
+        getInputsFromLine(line) {
+            let tries = document.querySelectorAll('.essai');
+            
+            return tries[line].querySelectorAll('input');
+        }
     },
     template: `
-        <input maxlength="1" 
+        <input maxlength="1"
                class="sf m-2"
                @keyup=bindValue($event)
                :disabled="essai != 1"

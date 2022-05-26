@@ -1,5 +1,5 @@
 import GameService from '/src/ts/services/GameService';
-import Constant from '/src/ts/Constants';
+import Constants from '/src/ts/Constants';
 
 export default {
     props: {
@@ -22,7 +22,7 @@ export default {
         nextCase(event, indice) {
             const inputs = this.getInputsFromLine();
 
-            if (event.code === Constant.BackspaceCode && indice > 1) {
+            if (event.code === Constants.BackspaceCode && indice > 1) {
                 indice = indice - 2;
                 inputs[indice].value = '';
             }
@@ -45,13 +45,14 @@ export default {
 
             for(let i in wordUser){
                 let letter = letters[i];
-                let color= Constant.Blanc;
+                let color= Constants.Blanc;
+
                 if(letter.good_position){
-                    color=Constant.Vert;
+                    color=Constants.Vert;
                 }else if(letter.good_letter){
-                    color=Constant.Jaune;
+                    color=Constants.Jaune;
                 }else{
-                    color=Constant.Rouge;
+                    color=Constants.Rouge;
                 }
                 this.activeColors.push(color);
             }
@@ -65,7 +66,15 @@ export default {
             let inputs = this.getInputsFromLine();
             if (!Array.from(inputs).every(input => input.value !== '')) {
                 throw 'Veuillez renseigner tout les champs';
+            }            
+
+            if (!Array.from(inputs).every(input => this.validLetter(input.value))) {
+                throw 'Veuillez n\'utiliser que des lettres';
             }
+        },
+        validLetter(letter) {
+            let regex = /^[A-Za-z]$/y;
+            return regex.test(letter)
         },
         getUserFullWord() {
             let inputs = this.getInputsFromLine();
