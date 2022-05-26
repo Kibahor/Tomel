@@ -1,5 +1,6 @@
 import Try from '/view/components/Try.js';
 import Case from '/view/components/Case.js';
+import Grid from '/view/components/Grid.js';
 
 import Constant from '/src/ts/Constants';
 import GameService from '/src/ts/services/GameService';
@@ -9,8 +10,7 @@ Vue.createApp({
         document.title = Constant.TITLE;
     },
     errorCaptured: function(err) {
-        alert(err);
-
+        console.error(err);
         return false;
     },
     mounted: function() {
@@ -20,19 +20,12 @@ Vue.createApp({
     data() {
         return {
             title: Constant.TITLE,
-            maxTry: Constant.MAXTRY,
-            word: this.recupWord(),
-            firstLetter: this.firstLetter()
+            word: this.getWord()
         }
     },
     methods: {
-        recupWord() {
-            console.log('getCurrentGame', GameService.getCurrentGame());
-            console.log('getWordToFind', GameService.getCurrentGame().getWordToFind());
+        getWord() {
             return GameService.getCurrentGame().getWordToFind().getWord();
-        },
-        firstLetter() {
-            return GameService.getCurrentGame().firstLetter();
         },
 
         clearMessage() {
@@ -46,4 +39,4 @@ Vue.createApp({
             div.append(p);
         }
     }
-}).component('Try', Try).component('Case', Case).mount('#app');
+}).component('Try', Try).component('Case', Case).component('Grid', Grid).mount('#app');

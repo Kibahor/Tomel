@@ -4,8 +4,7 @@ export default class WordDictionnary{
     getRandomWord(date: Date): string{  
         let size = this.words.length;
         let key_date = this.getDateKey(date);
-        let rand_word_size = this.words[Math.floor(Math.random() * size)].length;
-        let index = Math.pow(key_date,rand_word_size) % size;
+        let index = Math.pow(key_date, 9) % size; //todo revoir la puissance 
 
         return this.words[index];
     }

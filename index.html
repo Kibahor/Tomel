@@ -18,12 +18,9 @@
             Le jeu est en cours de développement !
         </div>
 
-        <div class="text-center" id="message">
-        </div>
-
-        <section id="grid">
-            <try v-for="n in maxTry" v-bind:word=word v-bind:essai=n @add-message="addMessage" @clear-message="clearMessage"></try>
-        </section>
+        <div class="text-center" id="message"></div>
+        <grid id="grid" v-bind:word=word @add-message="addMessage" @clear-message="clearMessage">
+            
 
         <script type="module" src="/dist/App.min.js"></script>
     </div>

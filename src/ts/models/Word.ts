@@ -1,16 +1,15 @@
-import LetterPosition from "../dtos/LetterPosition";
+import LetterState from "../dtos/LetterState";
 
 export default class Word{
     private word: string;
-    private goodPositions: LetterPosition[] = [];
-    private goodLetters: string[] = []; //list of the good letter in wrong position
-    private wrongLetters: string[] = [];
+    private letters: LetterState[] = [];
 
     constructor(word: string) {
         this.word = word;
     }
 
     compare(word: string): boolean{
+        word= word.toLowerCase();
         if(this.word === word)
             return true;
 
@@ -18,60 +17,44 @@ export default class Word{
 
         return false;
     }
-
-    firstLetter(): string{
-        return this.word[0];
-    }
     
     getWord(): string{
         return this.word;
     }
-    
+    getLetters():LetterState[]{
+        return this.letters;
+    }
     toJSON(): any{
         return {
             word: this.word,
-            goodPositions: this.goodPositions,
-            goodLetters: this.goodLetters,
-            wrongLetters: this.wrongLetters,
+            letters: this.letters,
         }
     }
 
-    private isGoodPosition(letter: string, position: number): boolean{
-        let findedPosition = this.word.indexOf(letter, position);
-        if(findedPosition === position){ //lettre trouvée à la bonne place
-            this.goodPositions.push({position: position, letter: this.word[position]});
-            return true;
-        }
-
-        return false;
+    private isGoodPosition(position: number, findedPosition:number): boolean{
+        return findedPosition === position //lettre trouvée à la bonne place
     }
 
-    private isGoodLetter(letter: string, position: number): boolean{
-        let findedPosition = this.word.indexOf(letter, position);
-        if(findedPosition !== -1){ //lettre trouvée à la mauvaise place dans la suite du mot
-            this.goodLetters.push(letter);
-        }
-        else if(this.word.indexOf(letter, 0) !== -1) { //lettre trouvée à la mauvaise place dans les positions précédentes
-            this.goodLetters.push(letter);
-        }
-
-        return false;
+    private isGoodLetter(letter: string, position: number, findedPosition:number): boolean{
+        return (findedPosition !== -1 || this.word.indexOf(letter, 0) !== -1)
+        //lettre trouvée à la mauvaise place dans la suite du mot OU lettre trouvée à la mauvaise place dans les positions précédentes
     }
 
     private checkLetters(word: string): void{
-        for (var i=0; i < word.length; i++) {
-            
-            if(this.isGoodPosition(word[i], i))
-                continue;
-
-            if(this.isGoodLetter(word[i], i))
-                continue;
-
-            this.wrongLetters.push(word[i]);
+        for (let i=0; i < word.length; i++) {
+            let findedPosition = this.word.indexOf(word[i], i);
+            this.letters.push(new LetterState(
+                word[i], 
+                this.isGoodPosition(i, findedPosition), 
+                this.isGoodLetter(word[i], i, findedPosition)
+            ));
         }
     }
 
     static fromJSON(wordJson: any): Word{
+        if(!wordJson['word'])
+            throw 'Erreur dans le format JSON du WORD';
+
         return new Word(wordJson['word']);
     }
 }
