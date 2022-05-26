@@ -7,7 +7,7 @@
 Les commandes suivantes doivent être lancées depuis la racine du projet : <br/>
 
 > Lancer la commande `npm install`<br/>
-> Lancer la commande `npx webpack`<br/>
+> Lancer la commande `npx webpack` ou `npx webpack --watch` pour bénéficier du hot reload.<br/>
 > Lancer la commande `npx serve`
 
 ## En dev
