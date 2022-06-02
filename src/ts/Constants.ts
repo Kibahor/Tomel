@@ -7,8 +7,10 @@ export default class Constants{
 
     static PressEnter: string = 'Appuyez sur entré !';
 
-    static Jaune: string = 'rgb(255,255,0)'
-    static Rouge: string = 'rgb(255,0,0)'
-    static Vert: string = 'rgb(0,255,0)'
-    static Blanc: string = 'rgb(255,255,255)'
+    static Jaune: string = 'rgb(255,255,0)';
+    static Rouge: string = 'rgb(255,0,0)';
+    static Vert: string = 'rgb(0,255,0)';
+    static Blanc: string = 'rgb(255,255,255)';
+
+    static RegexAlpha: RegExp = /^[A-Za-z]+$/;
 }

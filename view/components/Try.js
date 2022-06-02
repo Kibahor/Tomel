@@ -73,8 +73,7 @@ export default {
             }
         },
         validLetter(letter) {
-            let regex = /^[A-Za-z]$/y;
-            return regex.test(letter)
+            return Constants.RegexAlpha.test(letter)
         },
         getUserFullWord() {
             let inputs = this.getInputsFromLine();

@@ -12,6 +12,12 @@ export default {
             event.preventDefault();
             this.$emit('clearMessage');
 
+            let char = String.fromCharCode(event.keyCode);
+            if (event.code !== Constants.EnterCode && event.code !== Constants.BackspaceCode && (!Constants.RegexAlpha.test(char) || event.code.includes('Numpad'))) {
+                this.getInputsFromLine(this.essai - 1)[this.indice - 1].value = '';
+                return;
+            }
+
             if (event.code === Constants.EnterCode) {
                 this.$emit('validLine');
                 return;
@@ -25,8 +31,12 @@ export default {
             let inputs = this.getInputsFromLine(this.essai - 1);
             let indice = this.indice;
 
-            if (event.code === Constants.BackspaceCode && this.indice > 1) {
-                indice = indice - 2;
+            if (event.code === Constants.BackspaceCode) {
+                if (this.indice > 1) {
+                    indice = indice - 2;
+                } else {
+                    indice = 0;
+                }
                 inputs[indice].value = '';
             }
 
@@ -42,6 +52,8 @@ export default {
     template: `
         <input maxlength="1"
                class="sf m-1 m-md-2"
+               pattern="[a-zA-Z]"
+               type="text"
                @keyup=bindValue($event)
                :disabled="essai != 1"
                v-bind:style="{ backgroundColor: activeColors[indice-1]}"></input>
