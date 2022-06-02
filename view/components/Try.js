@@ -37,23 +37,23 @@ export default {
             let game = GameService.getCurrentGame();
             let letters = game.getWordToFind().getLetters();
 
-            if(game.isWordFound(wordUser)){
-                this.addMessage('Word has been found !');
-                this.$emit('disableLine');
+            if (game.isWordFound(wordUser)) {
+                this.$emit('wordFound');
                 return;
             }
 
-            for(let i in wordUser){
+            for (let i in wordUser) {
                 let letter = letters[i];
-                let color= Constants.Blanc;
+                let color = Constants.Blanc;
 
-                if(letter.good_position){
-                    color=Constants.Vert;
-                }else if(letter.good_letter){
-                    color=Constants.Jaune;
-                }else{
-                    color=Constants.Rouge;
+                if (letter.good_position) {
+                    color = Constants.Vert;
+                } else if (letter.good_letter) {
+                    color = Constants.Jaune;
+                } else {
+                    color = Constants.Rouge;
                 }
+
                 this.activeColors.push(color);
             }
 
@@ -66,7 +66,7 @@ export default {
             let inputs = this.getInputsFromLine();
             if (!Array.from(inputs).every(input => input.value !== '')) {
                 throw 'Veuillez renseigner tout les champs';
-            }            
+            }
 
             if (!Array.from(inputs).every(input => this.validLetter(input.value))) {
                 throw 'Veuillez n\'utiliser que des lettres';

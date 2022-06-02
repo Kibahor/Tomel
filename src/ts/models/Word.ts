@@ -21,9 +21,11 @@ export default class Word{
     getWord(): string{
         return this.word;
     }
-    getLetters():LetterState[]{
+
+    getLetters(): LetterState[]{
         return this.letters;
     }
+
     toJSON(): any{
         return {
             word: this.word,
