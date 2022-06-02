@@ -1,0 +1,17 @@
+@use 'variables' as variables;
+@use 'mixins' as mixins;
+
+.essai input {
+    width: 30px;
+    height: 30px;
+}
+
+.goodPos {
+    @include mixins.themePosition(variables.$success-bg-color, variables.$success-txt-color);
+}
+.badPos {
+    @include mixins.themePosition(variables.$warning-bg-color, variables.$warning-txt-color);
+}
+.nothing {
+    @include mixins.themePosition(variables.$nothing-bg-color, variables.$nothing-txt-color);
+}

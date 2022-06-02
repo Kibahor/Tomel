@@ -1,2 +1,9 @@
-dist/
+#npm
 node_modules/
+
+#ide
+.vscode/
+
+#webpack
+dist/
+out/
