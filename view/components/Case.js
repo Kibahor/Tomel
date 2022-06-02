@@ -35,13 +35,13 @@ export default {
         },
         getInputsFromLine(line) {
             let tries = document.querySelectorAll('.essai');
-            
+
             return tries[line].querySelectorAll('input');
         }
     },
     template: `
         <input maxlength="1"
-               class="sf m-2"
+               class="sf m-1 m-md-2"
                @keyup=bindValue($event)
                :disabled="essai != 1"
                v-bind:style="{ backgroundColor: activeColors[indice-1]}"></input>
