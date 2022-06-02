@@ -51,7 +51,7 @@ export default {
     },
     template: `
         <input maxlength="1"
-               class="sf m-1 m-md-2"
+               class="m-1 m-md-2 text-uppercase text-center"
                pattern="[a-zA-Z]"
                type="text"
                @keyup=bindValue($event)

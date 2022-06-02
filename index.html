@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/dist/css/style.css" rel="stylesheet" />
+    <link href="/dist/css/style.min.css" rel="stylesheet" />
 
     <script src="/dist/js/vue.global.prod.js"></script>
 
@@ -22,7 +22,10 @@
         </div>
 
         <div class="text-center" id="message"></div>
-        <grid id="grid" v-bind:word=word @add-message="addMessage" @clear-message="clearMessage"></grid>
+        <grid class="text-center" 
+              v-bind:word=word 
+              @add-message="addMessage" 
+              @clear-message="clearMessage"></grid>
 
         <script type="module" src="/dist/App.min.js"></script>
     </div>
