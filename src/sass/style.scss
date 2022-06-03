@@ -4,6 +4,11 @@
 .essai input {
     width: 30px;
     height: 30px;
+
+    @media screen and (max-width: 768px) {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 .goodPos {
