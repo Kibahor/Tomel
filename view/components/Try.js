@@ -18,7 +18,6 @@ export default {
         clearMessage() {
             this.$emit('clearMessage');
         },
-
         nextCase(event, indice) {
             const inputs = this.getInputsFromLine();
 

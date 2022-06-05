@@ -2,12 +2,12 @@ import Try from '/view/components/Try.js';
 import Case from '/view/components/Case.js';
 import Grid from '/view/components/Grid.js';
 
-import PerfItem from '/view/components/PerfItem.js';
-import ShareItem from '/view/components/ShareItem.js';
-import StatItem from '/view/components/StatItem.js';
-import SuccessInsertModal from '/view/components/SuccessInsertModal.js';
-import SuccessInsertHeader from '/view/components/SuccessInsertHeader.js';
-import SuccessInsertBody from '/view/components/SuccessInsertBody.js';
+import PerfItem from '/view/components/successModal/PerfItem.js';
+import ShareItem from '/view/components/successModal/ShareItem.js';
+import StatItem from '/view/components/successModal/StatItem.js';
+import SuccessInsertModal from '/view/components/successModal/SuccessInsertModal.js';
+import SuccessInsertHeader from '/view/components/successModal/SuccessInsertHeader.js';
+import SuccessInsertBody from '/view/components/successModal/SuccessInsertBody.js';
 
 import Constant from '/src/ts/Constants';
 import GameService from '/src/ts/services/GameService';
