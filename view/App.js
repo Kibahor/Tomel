@@ -2,11 +2,8 @@ import Try from '/view/components/Try.js';
 import Case from '/view/components/Case.js';
 import Grid from '/view/components/Grid.js';
 
-import PerfItem from '/view/components/successModal/PerfItem.js';
 import ShareItem from '/view/components/successModal/ShareItem.js';
-import StatItem from '/view/components/successModal/StatItem.js';
 import SuccessInsertModal from '/view/components/successModal/SuccessInsertModal.js';
-import SuccessInsertHeader from '/view/components/successModal/SuccessInsertHeader.js';
 import SuccessInsertBody from '/view/components/successModal/SuccessInsertBody.js';
 
 import Constant from '/src/ts/Constants';
@@ -27,7 +24,8 @@ Vue.createApp({
         data() {
             return {
                 title: Constant.TITLE,
-                word: this.getWord()
+                word: this.getWord(),
+                isFinish: false,
             }
         },
         methods: {
@@ -44,15 +42,18 @@ Vue.createApp({
                 let p = document.createElement('p');
                 p.innerHTML = message;
                 div.append(p);
+            },
+            wordFound() {
+                this.addMessage('Word has been found !');
+                this.isFinish = true;
+
+                console.log(this.isFinish);
             }
         }
     }).component('Try', Try)
     .component('Case', Case)
     .component('Grid', Grid)
     .component('SuccessInsertModal', SuccessInsertModal)
-    .component('SuccessInsertHeader', SuccessInsertHeader)
     .component('SuccessInsertBody', SuccessInsertBody)
-    .component('StatItem', StatItem)
-    .component('PerfItem', PerfItem)
     .component('ShareItem', ShareItem)
     .mount('#app');

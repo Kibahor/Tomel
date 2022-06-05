@@ -33,7 +33,7 @@ export default {
                 input.setAttribute('style', `background-color: ${Constants.Vert}`);
             });
             this.disableLine();
-            this.addMessage('Word has been found !');
+            this.$emit('wordFound');
         },
         disableLine() {
             this.getInputsFromLine().forEach(function(input) {

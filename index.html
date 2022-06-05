@@ -22,7 +22,13 @@
         </div>
 
         <div class="text-center" id="message"></div>
-        <grid class="text-center" v-bind:word=word @add-message="addMessage" @clear-message="clearMessage"></grid>
+        <grid class="text-center" 
+              v-bind:word=word 
+              @add-message="addMessage" 
+              @clear-message="clearMessage"
+              @word-found="wordFound"></grid>
+
+        <success-insert-modal v-if="isFinish"></success-insert-modal>
 
         <script type="module" src="/dist/App.min.js"></script>
     </div>
