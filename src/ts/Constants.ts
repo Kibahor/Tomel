@@ -12,5 +12,6 @@ export default class Constants{
     static Vert: string = 'rgb(0,255,0)';
     static Blanc: string = 'rgb(255,255,255)';
 
-    static RegexAlpha: RegExp = /^[A-Za-z]+$/;
+    static RegexAlpha: RegExp = /^[A-Za-z]$/;
+    static RegexMobile: RegExp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
 }

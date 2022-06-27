@@ -12,18 +12,21 @@ export default {
             event.preventDefault();
             this.$emit('clearMessage');
 
-            let char = String.fromCharCode(event.keyCode);
-            if (event.code !== Constants.EnterCode && event.code !== Constants.BackspaceCode && (!Constants.RegexAlpha.test(char) || event.code.includes('Numpad'))) {
+            const char = event.key;
+            const isMobile = Constants.RegexMobile.test(navigator.userAgent); //todo revoir
+            const isLastLetter = this.indice === this.totalLetter;
+
+            if (!isMobile && mevent.code !== Constants.EnterCode && event.code !== Constants.BackspaceCode && (!Constants.RegexAlpha.test(char) || event.code.includes('Numpad'))) {
                 this.getInputsFromLine(this.essai - 1)[this.indice - 1].value = '';
                 return;
             }
 
-            if (event.code === Constants.EnterCode) {
+            if (event.code === Constants.EnterCode || (isMobile && isLastLetter)) {
                 this.$emit('validLine');
                 return;
             }
 
-            if (this.indice === this.totalLetter) {
+            if (isLastLetter) {
                 this.$emit('addMessage', Constants.PressEnter);
                 return;
             }
