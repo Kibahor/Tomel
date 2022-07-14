@@ -1,5 +1,19 @@
 export default class WordDictionnary{
-    private words: string[] = ['informatique', 'javascript', 'acheter', 'test'];
+    private words: string[] = [
+        'informatique', 
+        'javascript', 
+        'acheter', 
+        'test',
+        'coton',
+        'tendre',
+        'point',
+        'gingembre',
+        'pieds',
+        'rosette',
+        'caquet',
+        'exportationc',
+        'ciel'
+    ];
 
     getRandomWord(date: Date): string{  
         let size = this.words.length;
