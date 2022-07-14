@@ -7,13 +7,15 @@ export default {
     data() {
         return {
             succeed: this.isSucceed(),
-            tryToSuccess: 0
+            tryToSuccess: 0,
+            currentWord: ""
         }
     },
     methods: {
         isSucceed() {
             const currentGame = GameService.getCurrentGame();
-            return false;
+            this.currentWord = currentGame.getWordToFind().getWord();
+            return currentGame.isWordFound(this.currentWord);
         }
     },
     template: `
@@ -21,8 +23,11 @@ export default {
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="InsertModalLabel">
-                            XXXXXX => TODO récupérer le libellé Victoire/Défaite en fonction du résultat
+                        <h5 v-if="this.isSucceed()" class="modal-title text-center" id="InsertModalLabel">    
+                            Victoire ({{ this.currentWord }})
+                        </h5>
+                        <h5 v-else class="modal-title text-center" id="InsertModalLabel">    
+                            Défaite ({{ this.currentWord }})
                         </h5>
                     </div>
 
